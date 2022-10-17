@@ -20,6 +20,7 @@ function generatePassword() {
   var includeNumbers = window.confirm("Do you want to include numbers?")
   var includeSpecialCharacters = window.confirm("Do you want to include special characters?")
   var functionsToUse = []
+  var i = 0
 // validate password length variable
   if (passwordLength > 128 || passwordLength < 8) {
 window.alert("Please enter a valid password length.");
@@ -32,63 +33,85 @@ if (includeLowercase===false && includeUppercase ===false && includeNumbers === 
 }
 var passwordString = ''
 var LOWERCASE = 'abcdefghijklmnopqrstuvwxyz'
-// var LOWERCASE = LOWERCASE.split("")
 var UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-// var UPPERCASE = UPPERCASE.split("")
 var NUMBERS = '0123456789'
-// var NUMBERS = NUMBERS.split("")
 var SPECIALCHARACTERS = '!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~'
-// var SPECIALCHARACTERS = SPECIALCHARACTERS.split("")
 
 function randomLowercase(){ 
-randomLowercase =  Math.floor(Math.random() * LOWERCASE.length);
-return LOWERCASE[randomLowercase];
+randomLC =  Math.floor(Math.random() * LOWERCASE.length);
+return LOWERCASE[randomLC];
 }
 
 function randomUppercase(){ 
-  randomUppercase = Math.floor(Math.random() * UPPERCASE.length);
-  return(UPPERCASE[randomUppercase]);
+  randomUP = Math.floor(Math.random() * UPPERCASE.length);
+  return(UPPERCASE[randomUP]);
   }
 
 function randomNumber(){ 
-  randomNumber = Math.floor(Math.random() * NUMBERS.length);
-    return(NUMBERS[randomNumber]);
+  randomN = Math.floor(Math.random() * NUMBERS.length);
+    return(NUMBERS[randomN]);
     }  
 function randomSpecialCharacter(){ 
-  randomSpecialCharacter = Math.floor(Math.random() * SPECIALCHARACTERS.length);
-      return(SPECIALCHARACTERS[randomSpecialCharacter]);
+  randomSC = Math.floor(Math.random() * SPECIALCHARACTERS.length);
+      return(SPECIALCHARACTERS[randomSC]);
       }
 
-// for (let i = 0; i < passwordLength; i++){
-  if (includeLowercase = true){
+
+  if (includeLowercase === true){
     passwordString += randomLowercase();
-    i+= 1;
-    functionsToUse.push('randomLowercase()');
+    functionsToUse.push('Lowercase');
   }
-  if (includeUppercase = true){
+  if (includeUppercase === true){
     passwordString += randomUppercase();
-    i += 1;
-    functionsToUse.push('randomUppercase()');
+    functionsToUse.push('Uppercase');
   }
 
-  if (includeNumbers = true){
+  if (includeNumbers === true){
     passwordString += randomNumber();
-    i += 1;
-    functionsToUse.push('randomNumber()');
+    // i += 1;
+    functionsToUse.push('Number');
   }
-  if (includeSpecialCharacters = true){
+  if (includeSpecialCharacters === true){
     passwordString += randomSpecialCharacter();
-    i += 1;
-    functionsToUse.push('randomSpecialCharacters()')
+    // i += 1;
+    functionsToUse.push('SpecialCharacter');
   }
 
-// passwordString += randomLowercase()
-// passwordString += randomUppercase()
-// passwordString += randomNumber()
-// passwordString += randomSpecialCharacter()
+  console.log(includeLowercase)
+  console.log(functionsToUse)
 
-window.alert(passwordString)
+  function callRandomFunction(){ 
+    var randomFunctionNumber =  Math.floor(Math.random() * functionsToUse.length);
+    return (functionsToUse[randomFunctionNumber]);
+    }
+
+ for (let i = passwordString.length; i < passwordLength; i++){  
+
+
+ whichFunction = callRandomFunction();
+  
+if (whichFunction === 'Lowercase'){
+  passwordString += randomLowercase();
+}
+else if (whichFunction === 'Uppercase'){
+  passwordString += randomUppercase();
+}
+else if (whichFunction ==='Number'){
+  passwordString += randomNumber();
+}
+else if (whichFunction === 'SpecialCharacter'){
+  passwordString += randomSpecialCharacter();
+}
+
+
+
+ }
+
+
+return passwordString;
 
 
 
 }
+
+
